@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 350px;
+}
+
+.card {
+  height: 100px;
+  width: 100px;
+  background-color: chartreuse;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card > img {
+  height: 60px;
+  width: 60px;
+}
