@@ -1,18 +1,19 @@
 body {
   display: flex;
   justify-content: center;
+  height: 100vh;
+  align-items: center;
 }
 
 .game-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
-  width: 350px;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .card {
-  height: 100px;
-  width: 100px;
+  height: 200px;
+  width: 200px;
   background-color: chartreuse;
   border-radius: 10px;
   display: flex;
@@ -20,8 +21,10 @@ body {
   align-items: center;
   cursor: pointer;
 }
-
-.card > img {
+.flipped {
+  background-color: rgb(203, 231, 174);
+}
+img {
   height: 60px;
   width: 60px;
 }

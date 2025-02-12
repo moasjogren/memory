@@ -15,27 +15,31 @@ interface Cardtype {
 const shuffeledData: Cardtype[] = CardData.sort(() => Math.random() - 0.5);
 let chosenCards: Cardtype[] = [];
 
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactElement {
   const [cards, setCards] = useState<Cardtype[]>(shuffeledData);
+  const [disabled, setDisabled] = useState<boolean>(false);
 
-  function test(card: Cardtype) {
+  function test(card: Cardtype): void {
     card.state = !card.state;
     setCards([...cards]);
     chosenCards.push(card);
   }
 
-  function checkWinner() {
+  function checkWinner(): void {
     if (chosenCards.length === 2) {
+      setDisabled(true);
       if (chosenCards[0].img !== chosenCards[1].img) {
         setTimeout(() => {
           test(chosenCards[0]);
           test(chosenCards[1]);
           chosenCards = [];
+          setDisabled(false);
         }, 1000);
-      } else {
+      } else if (chosenCards[0].img === chosenCards[1].img) {
         chosenCards[0].isMatch = true;
         chosenCards[1].isMatch = true;
         chosenCards = [];
+        setDisabled(false);
       }
     }
   }
@@ -44,6 +48,7 @@ export default function Home(): JSX.Element {
     <div className="game-container">
       {cards.map((card) => (
         <Card
+          disabled={disabled}
           key={card.id}
           id={card.id}
           test={() => {
